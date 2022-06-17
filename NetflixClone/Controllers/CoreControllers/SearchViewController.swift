@@ -119,6 +119,6 @@ extension SearchViewController: UISearchResultsUpdating {
             }
         }
     }
-    
-   
 }
+
+// done with search 

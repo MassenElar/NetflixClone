@@ -87,6 +87,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-UrlSource.swift
+NetflixClone/Networking/UrlSource.swift
 
 # End of https://www.toptal.com/developers/gitignore/api/swift
