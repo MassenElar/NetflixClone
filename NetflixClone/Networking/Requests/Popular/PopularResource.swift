@@ -14,7 +14,7 @@ struct PopularRecources: AnyResource {
     var url: URL
     
     init() {
-        let resourceString = "\(UrlSources.baseUrl)/3/movie/popular?api_key=\(UrlSources.API_KEY)&language=en-US&page=1"
+        let resourceString = "\(Constants.baseUrl)/3/movie/popular?api_key=\(Constants.API_KEY)&language=en-US&page=1"
         guard let resourceUrl = URL(string: resourceString) else {
             fatalError()
         }

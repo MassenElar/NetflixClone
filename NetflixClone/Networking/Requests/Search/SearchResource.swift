@@ -15,7 +15,7 @@ struct SearchRecources: AnyResource {
     var url: URL
     
     init(query: String) {
-        let resourceString = "\(UrlSources.baseUrl)/3/search/movie?api_key=\(UrlSources.API_KEY)&query=\(query)"
+        let resourceString = "\(Constants.baseUrl)/3/search/movie?api_key=\(Constants.API_KEY)&query=\(query)"
         guard let resourceUrl = URL(string: resourceString) else {
             fatalError()
         }

@@ -22,7 +22,6 @@
 		8B7A5F532852F5BE00AB5095 /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F522852F5BE00AB5095 /* MovieRequest.swift */; };
 		8B7A5F552852F5D700AB5095 /* MovieResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F542852F5D700AB5095 /* MovieResource.swift */; };
 		8B7A5F572852FFD700AB5095 /* AnyRecource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F562852FFD700AB5095 /* AnyRecource.swift */; };
-		8B7A5F592853017500AB5095 /* UrlSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F582853017500AB5095 /* UrlSources.swift */; };
 		8B7A5F5B285305AE00AB5095 /* ModelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F5A285305AE00AB5095 /* ModelRequest.swift */; };
 		8B7A5F5D2853073100AB5095 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F5C2853073100AB5095 /* NetworkRequest.swift */; };
 		8B7A5F5F2853089E00AB5095 /* NetrworkRequestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F5E2853089E00AB5095 /* NetrworkRequestErrors.swift */; };
@@ -44,6 +43,7 @@
 		8B7A5F92285B790200AB5095 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F91285B790200AB5095 /* SearchResultViewController.swift */; };
 		8B7A5F95285B823E00AB5095 /* SearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F94285B823E00AB5095 /* SearchRequest.swift */; };
 		8B7A5F97285B824F00AB5095 /* SearchResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F96285B824F00AB5095 /* SearchResource.swift */; };
+		8B7A5F9B285C4C3200AB5095 /* UrlSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5F9A285C4C3200AB5095 /* UrlSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +64,6 @@
 		8B7A5F522852F5BE00AB5095 /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
 		8B7A5F542852F5D700AB5095 /* MovieResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResource.swift; sourceTree = "<group>"; };
 		8B7A5F562852FFD700AB5095 /* AnyRecource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRecource.swift; sourceTree = "<group>"; };
-		8B7A5F582853017500AB5095 /* UrlSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSources.swift; sourceTree = "<group>"; };
 		8B7A5F5A285305AE00AB5095 /* ModelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRequest.swift; sourceTree = "<group>"; };
 		8B7A5F5C2853073100AB5095 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		8B7A5F5E2853089E00AB5095 /* NetrworkRequestErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetrworkRequestErrors.swift; sourceTree = "<group>"; };
@@ -86,6 +85,7 @@
 		8B7A5F91285B790200AB5095 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		8B7A5F94285B823E00AB5095 /* SearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequest.swift; sourceTree = "<group>"; };
 		8B7A5F96285B824F00AB5095 /* SearchResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResource.swift; sourceTree = "<group>"; };
+		8B7A5F9A285C4C3200AB5095 /* UrlSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,12 +181,12 @@
 			isa = PBXGroup;
 			children = (
 				8B7A5F562852FFD700AB5095 /* AnyRecource.swift */,
-				8B7A5F582853017500AB5095 /* UrlSources.swift */,
 				8B7A5F502852F55400AB5095 /* Requests */,
 				8B7A5F5A285305AE00AB5095 /* ModelRequest.swift */,
 				8B7A5F5C2853073100AB5095 /* NetworkRequest.swift */,
 				8B7A5F5E2853089E00AB5095 /* NetrworkRequestErrors.swift */,
 				8B7A5F602853D07500AB5095 /* imageRequest.swift */,
+				8B7A5F9A285C4C3200AB5095 /* UrlSource.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -379,12 +379,12 @@
 				8B7A5F6B28579F8800AB5095 /* UpcomingRequest.swift in Sources */,
 				8B7A5F572852FFD700AB5095 /* AnyRecource.swift in Sources */,
 				8B7A5F782858F04B00AB5095 /* ImageCache.swift in Sources */,
-				8B7A5F592853017500AB5095 /* UrlSources.swift in Sources */,
 				8B7A5F6D28579F9F00AB5095 /* UpcomingResource.swift in Sources */,
 				8B7A5F5F2853089E00AB5095 /* NetrworkRequestErrors.swift in Sources */,
 				8B7A5F6628578F3800AB5095 /* TvRequest.swift in Sources */,
 				8B7A5F87285B6CA400AB5095 /* DiscoverResource.swift in Sources */,
 				8B7A5F95285B823E00AB5095 /* SearchRequest.swift in Sources */,
+				8B7A5F9B285C4C3200AB5095 /* UrlSource.swift in Sources */,
 				8B7A5F49284EE53500AB5095 /* CollectionViewTableViewCell.swift in Sources */,
 				8B7A5F7A28591C3C00AB5095 /* PoplularRequest.swift in Sources */,
 				8B7A5F92285B790200AB5095 /* SearchResultViewController.swift in Sources */,
