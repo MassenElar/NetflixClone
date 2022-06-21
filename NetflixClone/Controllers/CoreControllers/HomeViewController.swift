@@ -20,13 +20,8 @@ class HomeViewController: UIViewController {
     
     typealias ShowResult = Result<[Titles], NetworkError>
     
-//    var titles: [Titles] = [] {
-//        didSet {
-//            DispatchQueue.main.sync {
-//                self.homeFeedTable.reloadData()
-//            }
-//        }
-//    }
+    private var randomTrendingMovie: Titles?
+    private var headerView: MainHeaderView?
     
     let sectionTitles: [String] = ["Trending Movies", "Popular", "Trending Tv", "Upcomming Movies", "Top Rated"]
 
@@ -47,9 +42,26 @@ class HomeViewController: UIViewController {
         configureNavBar()
         
         // the tableView header
-        let headerView = MainHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450)) 
+        configureMainHeaderView()
+        headerView = MainHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
         
+    }
+    
+    private func configureMainHeaderView() {
+        let req = TrendingMoviesRequest()
+        req.getTrendingMovies { [weak self] result in
+            switch result{
+            case .success(let shows):
+                self?.randomTrendingMovie = shows.randomElement()
+                guard let ikhan = self?.randomTrendingMovie else {
+                    return
+                }
+                self?.headerView?.configure(with: ikhan)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     private func configureNavBar() {
@@ -93,7 +105,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
-        
+        cell.delegate = self
         switch indexPath.section {
             case Sections.TrendingMovies.rawValue:
                 let trendingMoviesReq = TrendingMoviesRequest()
@@ -182,5 +194,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
+    
+}
+
+
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func CollectionViewTableViewCellDidTap(_ cell: CollectionViewTableViewCell, viewModel: VideoPrevViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            let vc = ShowPrevViewController()
+            vc.configure(with: viewModel)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     
 }

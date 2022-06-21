@@ -48,8 +48,8 @@ class UpcomingsViewController: UIViewController {
     
     private func fetchUpcoming() {
         let upcomingReq = UpcomingRequest()
-        upcomingReq.getUpcomingMovie { result in
-            self.handelResult(result: result)
+        upcomingReq.getUpcomingMovie { [weak self] result in
+            self?.handelResult(result: result)
         }
     }
     
@@ -80,11 +80,28 @@ extension UpcomingsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ShowTableViewCell.identifier, for: indexPath) as? ShowTableViewCell else {
             return UITableViewCell()
         }
-        cell.updateUi(show: titles[indexPath.row])
+        let show = titles[indexPath.row]
+        cell.updateUi(show: ShowViewModel(title: show.title ?? "", poster: show.poster ?? "", overView: show.overview ?? ""))
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            let show = self?.titles[indexPath.row]
+            let showDetials = ShowDetails()
+            let ytbReq = YoutubeRequest()
+            let model = ShowViewModel(title: show?.title ?? "", poster: show?.poster ?? "", overView: show?.overview ?? "")
+            ytbReq.getYoutubeResult(with: show?.title ?? show?.name ?? "") { [weak self] result in
+                showDetials.handleResult(result: result, show: model, viewController: self ?? UpcomingsViewController())
+            }
+//            showDetials.getShowDetails(with: ShowViewModel(title: show?.name ?? "" , poster: show?.poster ?? "", overView: show?.overview ?? ""), viewController: self ?? UpcomingsViewController())
+        }
+        
+    }
 }
+

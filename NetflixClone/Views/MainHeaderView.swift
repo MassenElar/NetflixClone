@@ -40,7 +40,6 @@ class MainHeaderView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "mainHeader")
         return imageView
     }()
     
@@ -85,6 +84,23 @@ class MainHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    public func configure(with show: Titles) {
+        guard let imageLink = show.poster else {
+            return
+        }
+        self.getImage(str: "https://image.tmdb.org/t/p/w500\(imageLink)")
+    }
+    
+    private func getImage(str: String?) {
+        if let imageStr = str {
+            ImageCache.shared.loadImage(from: imageStr) { image in
+                DispatchQueue.main.async {
+                    self.MainHeaderImageView.image = image
+                }
+            }
+        }
     }
 
 }

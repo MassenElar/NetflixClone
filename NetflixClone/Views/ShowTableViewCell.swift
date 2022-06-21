@@ -74,12 +74,15 @@ class ShowTableViewCell: UITableViewCell {
         fatalError()
     }
     
-    public func updateUi(show: Titles) {
-        guard let imageLink = show.poster else {
-            return
-        }
-        DispatchQueue.main.async {
-            self.showLabel.text = show.title ?? show.name ?? "Unknown"
+    
+    
+    
+    public func updateUi(show: ShowViewModel) {
+        
+        
+        let imageLink = show.poster
+        DispatchQueue.main.async { [weak self] in
+            self?.showLabel.text = show.title
         }
         self.getImage(str: "https://image.tmdb.org/t/p/w500\(imageLink)")
     }

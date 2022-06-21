@@ -87,7 +87,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ShowTableViewCell.identifier, for: indexPath) as? ShowTableViewCell else {
             return UITableViewCell()
         }
-        cell.updateUi(show: titles[indexPath.row])
+        let show = titles[indexPath.row]
+        cell.updateUi(show: ShowViewModel(title: show.title ?? "", poster: show.poster ?? "", overView: show.overview ?? ""))
         return cell 
     }
     
@@ -95,11 +96,32 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return 150
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            let show = self?.titles[indexPath.row]
+            let showDetials = ShowDetails()
+            let ytbReq = YoutubeRequest()
+            let model = ShowViewModel(title: show?.title ?? "", poster: show?.poster ?? "", overView: show?.overview ?? "")
+            ytbReq.getYoutubeResult(with: show?.title ?? show?.name ?? "") { [weak self] result in
+                showDetials.handleResult(result: result, show: model, viewController: self ?? SearchViewController())
+            }
+//            showDetials.getShowDetails(with: ShowViewModel(title: show?.name ?? "" , poster: show?.poster ?? "", overView: show?.overview ?? ""), viewController: self ?? UpcomingsViewController())
+        }
+    }
+    
     
 }
 
 
-extension SearchViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchResultsUpdating, SearchResultsViewControllerDelagate {
+    
+    func searchResultsViewControllerDidTaped(_ viewModel: VideoPrevViewModel) {
+        let vc = ShowPrevViewController()
+        vc.configure(with: viewModel)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         
@@ -109,6 +131,7 @@ extension SearchViewController: UISearchResultsUpdating {
               let resultController = searchController.searchResultsController as? SearchResultViewController else {
                 return
             }
+        resultController.delagate = self
         let searchReq = SearchRequest()
         searchReq.getSearchResult(with: query) { result in
             switch result {

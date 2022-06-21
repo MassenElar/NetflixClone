@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol SearchResultsViewControllerDelagate: AnyObject {
+    func searchResultsViewControllerDidTaped(_ viewModel: VideoPrevViewModel)
+}
+
 class SearchResultViewController: UIViewController {
     
+    public weak var delagate: SearchResultsViewControllerDelagate?
     
     public var titles: [Titles] = [] {
         didSet {
@@ -57,6 +62,24 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         }
         cell.configure(model: titles[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let show = titles[indexPath.row]
+        
+        let title = show.title ?? show.name ?? ""
+        let ytbReq = YoutubeRequest()
+        ytbReq.getYoutubeResult(with: title) { [weak self] result in
+            switch result {
+            case .success(let video):
+                DispatchQueue.main.async {
+                    self?.delagate?.searchResultsViewControllerDidTaped(VideoPrevViewModel(title: title, youtubeView: video[0], showOverview: show.overview ?? ""))
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     
