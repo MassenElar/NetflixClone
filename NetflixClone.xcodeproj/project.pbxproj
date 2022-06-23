@@ -52,6 +52,11 @@
 		8B7A5FCC28616CFF00AB5095 /* NetflixCloneModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5FCA28616CFF00AB5095 /* NetflixCloneModel.xcdatamodeld */; };
 		8B7A5FCE2861724D00AB5095 /* DataPresistenceManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5FCD2861724D00AB5095 /* DataPresistenceManger.swift */; };
 		8B7A5FD02861A85600AB5095 /* ShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5FCF2861A85600AB5095 /* ShowViewModel.swift */; };
+		8B7A5FD22863790700AB5095 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5FD12863790700AB5095 /* EntryViewController.swift */; };
+		8B7A5FD42863A04B00AB5095 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A5FD32863A04B00AB5095 /* registerViewController.swift */; };
+		8B7A5FD82863ADF500AB5095 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B7A5FD72863ADF500AB5095 /* GoogleService-Info.plist */; };
+		8B7A5FDB2863AF7900AB5095 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7A5FDA2863AF7900AB5095 /* FirebaseAuth */; };
+		8B7A5FDD2863AF7900AB5095 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7A5FDC2863AF7900AB5095 /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +107,9 @@
 		8B7A5FCB28616CFF00AB5095 /* NetflixCloneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NetflixCloneModel.xcdatamodel; sourceTree = "<group>"; };
 		8B7A5FCD2861724D00AB5095 /* DataPresistenceManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPresistenceManger.swift; sourceTree = "<group>"; };
 		8B7A5FCF2861A85600AB5095 /* ShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewModel.swift; sourceTree = "<group>"; };
+		8B7A5FD12863790700AB5095 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		8B7A5FD32863A04B00AB5095 /* registerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
+		8B7A5FD72863ADF500AB5095 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B7A5FDD2863AF7900AB5095 /* FirebaseDatabase in Frameworks */,
+				8B7A5FDB2863AF7900AB5095 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +153,7 @@
 				8B7A5F39284ED35700AB5095 /* Controllers */,
 				8B7A5F33284EA17400AB5095 /* Info.plist */,
 				8B7A5FCA28616CFF00AB5095 /* NetflixCloneModel.xcdatamodeld */,
+				8B7A5FD72863ADF500AB5095 /* GoogleService-Info.plist */,
 			);
 			path = NetflixClone;
 			sourceTree = "<group>";
@@ -297,6 +308,8 @@
 				8B7A5F3E284ED45300AB5095 /* DownloadsViewController.swift */,
 				8B7A5F29284EA17100AB5095 /* MainTabBarViewController.swift */,
 				8B7A5F41284ED46D00AB5095 /* UpcomingsViewController.swift */,
+				8B7A5FD12863790700AB5095 /* EntryViewController.swift */,
+				8B7A5FD32863A04B00AB5095 /* registerViewController.swift */,
 			);
 			path = CoreControllers;
 			sourceTree = "<group>";
@@ -344,6 +357,10 @@
 			dependencies = (
 			);
 			name = NetflixClone;
+			packageProductDependencies = (
+				8B7A5FDA2863AF7900AB5095 /* FirebaseAuth */,
+				8B7A5FDC2863AF7900AB5095 /* FirebaseDatabase */,
+			);
 			productName = NetflixClone;
 			productReference = 8B7A5F22284EA17100AB5095 /* NetflixClone.app */;
 			productType = "com.apple.product-type.application";
@@ -372,6 +389,9 @@
 				Base,
 			);
 			mainGroup = 8B7A5F19284EA17100AB5095;
+			packageReferences = (
+				8B7A5FD92863AF7900AB5095 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8B7A5F23284EA17100AB5095 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -388,6 +408,7 @@
 			files = (
 				8B7A5F32284EA17400AB5095 /* LaunchScreen.storyboard in Resources */,
 				8B7A5F2F284EA17400AB5095 /* Assets.xcassets in Resources */,
+				8B7A5FD82863ADF500AB5095 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +422,7 @@
 				8B7A5F97285B824F00AB5095 /* SearchResource.swift in Sources */,
 				8B7A5F5B285305AE00AB5095 /* ModelRequest.swift in Sources */,
 				8B7A5F3D284ED42A00AB5095 /* SearchViewController.swift in Sources */,
+				8B7A5FD42863A04B00AB5095 /* registerViewController.swift in Sources */,
 				8B7A5F5D2853073100AB5095 /* NetworkRequest.swift in Sources */,
 				8B7A5FA2285D0CDD00AB5095 /* ShowPrevViewController.swift in Sources */,
 				8B7A5F6828578F4900AB5095 /* TvResource.swift in Sources */,
@@ -415,6 +437,7 @@
 				8B7A5FCC28616CFF00AB5095 /* NetflixCloneModel.xcdatamodeld in Sources */,
 				8B7A5F6D28579F9F00AB5095 /* UpcomingResource.swift in Sources */,
 				8B7A5F5F2853089E00AB5095 /* NetrworkRequestErrors.swift in Sources */,
+				8B7A5FD22863790700AB5095 /* EntryViewController.swift in Sources */,
 				8B7A5F6628578F3800AB5095 /* TvRequest.swift in Sources */,
 				8B7A5F87285B6CA400AB5095 /* DiscoverResource.swift in Sources */,
 				8B7A5FCE2861724D00AB5095 /* DataPresistenceManger.swift in Sources */,
@@ -646,6 +669,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B7A5FD92863AF7900AB5095 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B7A5FDA2863AF7900AB5095 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B7A5FD92863AF7900AB5095 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		8B7A5FDC2863AF7900AB5095 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B7A5FD92863AF7900AB5095 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8B7A5FCA28616CFF00AB5095 /* NetflixCloneModel.xcdatamodeld */ = {
