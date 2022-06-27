@@ -8,6 +8,10 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import LocalAuthentication
+
+
+
 
 class EntryViewController: UIViewController {
     
@@ -28,7 +32,7 @@ class EntryViewController: UIViewController {
         )
         field.layer.cornerRadius = 5
         field.backgroundColor = .white
-        field.textColor = .systemBackground
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftViewMode = .always
         return field
@@ -42,7 +46,7 @@ class EntryViewController: UIViewController {
         )
         field.layer.cornerRadius = 5
         field.backgroundColor = .white
-        field.textColor = .systemBackground
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftViewMode = .always
         field.isSecureTextEntry = true
@@ -84,7 +88,7 @@ class EntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .black
         view.addSubview(imageView)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
@@ -97,6 +101,7 @@ class EntryViewController: UIViewController {
     
     @objc func loginTapped() {
         print("button tapped")
+//        faceIdAuth()
         if let email = emailTextField.text, let pass = passwordTextField.text {
             signIn(email: email, password: pass)
         }
@@ -104,8 +109,8 @@ class EntryViewController: UIViewController {
     
     @objc func registerTapped() {
         print("register tapped")
-            let vc = registerViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+        let vc = registerViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func signIn(email: String, password: String) {
@@ -114,7 +119,7 @@ class EntryViewController: UIViewController {
             if error == nil {
                 print("user logged in")
                 let vc = MainTabBarViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
             } else {
                 print(error?.localizedDescription ?? "error login")
                 self.errorLabel.text = ""
@@ -180,4 +185,36 @@ class EntryViewController: UIViewController {
 
     
 
+}
+
+extension EntryViewController {
+    func faceIdAuth() {
+        let context = LAContext()
+        var error: NSError? = nil
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Login with face id"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [weak self] success, error in
+                DispatchQueue.main.async {
+                    
+                    guard success, error == nil else {
+                        let alert = UIAlertController(title: "Failed to log in", message: "Please try again", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                        self?.present(alert, animated: true)
+                        return
+                    }
+                    
+                    // show next vc
+                    let vc = MainTabBarViewController()
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+                }
+            }
+        } else {
+            
+            let alert = UIAlertController(title: "Unavailabale", message: "Can't use face id", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            present(alert, animated: true)
+            
+        }
+    }
 }

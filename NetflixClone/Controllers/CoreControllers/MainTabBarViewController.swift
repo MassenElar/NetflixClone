@@ -11,7 +11,8 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemYellow
+        view.superview?.backgroundColor = .black
+        view.backgroundColor = .black
         tabBar.tintColor = .label
         
         let vc1 = UINavigationController(rootViewController: HomeViewController())

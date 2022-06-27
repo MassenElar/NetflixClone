@@ -52,6 +52,7 @@ class MainHeaderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .black
         addSubview(MainHeaderImageView)
         addGradient()
         addSubview(playButton)

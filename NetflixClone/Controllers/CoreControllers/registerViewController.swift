@@ -35,7 +35,7 @@ class registerViewController: UIViewController {
         )
         field.layer.cornerRadius = 5
         field.backgroundColor = .white
-        field.textColor = .systemBackground
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftViewMode = .always
         return field
@@ -50,7 +50,7 @@ class registerViewController: UIViewController {
         )
         field.layer.cornerRadius = 5
         field.backgroundColor = .white
-        field.textColor = .systemBackground
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftViewMode = .always
         return field
@@ -64,7 +64,7 @@ class registerViewController: UIViewController {
         )
         field.layer.cornerRadius = 5
         field.backgroundColor = .white
-        field.textColor = .systemBackground
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftViewMode = .always
         field.isSecureTextEntry = true
@@ -79,7 +79,7 @@ class registerViewController: UIViewController {
         )
         field.layer.cornerRadius = 5
         field.backgroundColor = .white
-        field.textColor = .systemBackground
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftViewMode = .always
         field.isSecureTextEntry = true
@@ -102,7 +102,7 @@ class registerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .black
         
         view.addSubview(fullNameTextField)
         view.addSubview(emailTextField)
@@ -139,7 +139,7 @@ class registerViewController: UIViewController {
                         let ref = Database.database().reference(withPath: "Netflix/users").child(uid ?? "")
                         let vc = MainTabBarViewController()
                         ref.setValue(["uid": uid, "email": email, "fullName": fullName])
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
                         print("user registred")
                     }
                 } else {

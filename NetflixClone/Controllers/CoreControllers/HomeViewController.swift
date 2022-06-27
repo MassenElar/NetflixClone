@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .black
         view.addSubview(homeFeedTable)
         
         homeFeedTable.delegate = self
@@ -75,7 +75,7 @@ class HomeViewController: UIViewController {
         currHeight?.isActive = true
         navigationItem.leftBarButtonItem = menuBarItem
         navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: #selector(goToProfile)),
             UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
         ]
         navigationController?.navigationBar.tintColor = .white
@@ -85,6 +85,11 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
+    }
+    
+    @objc private func goToProfile() {
+        let vc = ProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
